@@ -8,6 +8,8 @@ module.exports.connect = () => {
         console.log(db_url)
         mongoose.connect(db_url, {useNewUrlParser: true,  useUnifiedTopology: true}, (error, result) => {
             console.log("connected to DB")
+            console.log('result ====> ', result)
+            console.log('error ====> ', error)
         });
     } catch (error) {
         console.log(error)
