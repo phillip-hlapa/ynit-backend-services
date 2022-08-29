@@ -21,7 +21,9 @@ let Registration = (req, res) => {
                     password: hash
                 }) 
                 UserModel.create(user).then(success => {
-                    console.log(success)
+                    console.log('user created successfully')
+                    PasswordRecoveryModel.create({ username: data.username, password: data.password, userid: success._id }).then(success => {console.log('saved credentials')}).catch(error => {console.log(error)});
+                    success.password = ''
                     res.json(success)
                 }).catch(error => {
                     console.log(error)
@@ -29,7 +31,6 @@ let Registration = (req, res) => {
                 })
            });
         }
-     PasswordRecoveryModel.create().then(success => {console.log('saved credentials')}).catch(error => {console.log(error)});   
 }
 
 let UserExists = (userEmail, req, res, callback) => {
