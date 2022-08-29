@@ -7,7 +7,19 @@ require('dotenv').config()
 require(__dirname + '/utils/database.connection.service').connect();
 
 app.use(bodyParser.json())
-app.use('*', cors())
+
+//CORS middleware
+var corsMiddleware = function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', 'localhost'); //replace localhost with actual host
+    res.header('Access-Control-Allow-Methods', 'OPTIONS, GET, PUT, PATCH, POST, DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, X-Requested-With, Authorization');
+
+    next();
+}
+
+app.use(corsMiddleware);
 
 
+//use body-parser to get json request
+app.use('*', cors());
 module.exports = app
