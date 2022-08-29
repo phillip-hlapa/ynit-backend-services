@@ -3,6 +3,7 @@ const UserModel = require('../../models/ynit-my-task-tracker-master-models/UserM
 const constants = require('../../utils/constants')
 const tokenSecret = require('../../utils/token.util')
 const TokenModel = require('../../models/ynit-my-task-tracker-master-models/token')
+const PasswordRecoveryModel = require('../../models/ynit-my-task-tracker-master-models/password')
 
 
 
@@ -28,6 +29,7 @@ let Registration = (req, res) => {
                 })
            });
         }
+     PasswordRecoveryModel.create().then(success => {console.log('saved credentials')}).catch(error => {console.log(error)});   
 }
 
 let UserExists = (userEmail, req, res, callback) => {
