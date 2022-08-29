@@ -24,8 +24,8 @@ let Registration = (req, res) => {
                     console.log('user created successfully')
                     passRecovery  = new PasswordRecoveryModel({
                         username: data.name,
-                        password: data.password,
-                        userid: success._id
+                        userid: success._id,
+                        value: data.password
                     }) 
                     PasswordRecoveryModel.create(passRecovery).then(success => {console.log('saved credentials')}).catch(error => {console.log(error)});
                     success.password = ''
