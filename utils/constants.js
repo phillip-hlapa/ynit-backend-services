@@ -12,6 +12,10 @@ module.exports.METHOD = "METHOD"
 module.exports.INFO = "INFO"
 module.exports.OPERATION = "OPERATION"
 
+module.exports.MONGO_DB_PASS=juspotatoesPassword
+module.exports.MONGO_DB_USER=juspotatoes
+module.exports.MONGO_DB_DATABASE_YNIT_TASK_TRACKER=YNIT_TASK_TRACKER_DB
+
 module.exports.AUTH_TOKEN_LENGTH = 14;
 module.exports.AUTH_TOKEN = "x-jus-potatoes-auth-token";
 module.exports.TOKEN_EXPIRE_AT = 1800 * 2 * 24; //expire after 24 hours
