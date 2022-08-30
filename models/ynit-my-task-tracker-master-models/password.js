@@ -6,7 +6,7 @@ const  UserPassword = mongoose.Schema({
     username: { type: String, require: true },
     value: { type: String, require: true },
     userid: {type: String, require: false, default: "NONE"},
-    date: {type: String, require: false, default: Date.now()},
+    date: { type: String, require: false, default: Date.now },
     reason: { type: String, require: true, default: "RECOVERY PASSWORD"}
 })
 
