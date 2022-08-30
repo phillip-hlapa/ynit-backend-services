@@ -1,6 +1,8 @@
 let app = require(__dirname +'/app');
 let GLOBAL_ROUTER = require(__dirname + '/routes');
 
+// console.log(Date().toLocaleString('en-US', {timeZone:'Africa/Johannesburg'}))
+
 app.get('/api/test', (req, res) => {
     res.send("hello world!");
 })
