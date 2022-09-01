@@ -62,9 +62,12 @@ module.exports.addCommentToNews = (req, res) => {
 }
 
 module.exports.deleteNews = (req, res) => {
-    NewsModel.findByIdAndDelete(req.params.newsId).then(deleted => {}, err => {
+    NewsModel.findByIdAndDelete(req.params.newsId).then(deleted => {
         console.log(deleted)
         res.json(deleted)
+    }, err => {
+
+
         console.log(err)
         res.json({ message: "deleted news", error: err})
     })
