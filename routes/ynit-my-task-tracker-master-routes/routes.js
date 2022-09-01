@@ -45,7 +45,7 @@ route.post('/my-task-tracker/news/:newsId/comments/create', function(req, res) {
 
 route.delete('/my-task-tracker/news/:newsId', function(req, res) {
     console.log('inside delete news endpoint')
-    NewsContoller.addCommentToNews(req, res)
+    NewsContoller.deleteNews(req, res)
     
 })
 
