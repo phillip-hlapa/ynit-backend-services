@@ -80,3 +80,50 @@ module.exports.Login = (req, res) => {
 
 }
 
+module.exports.getAllUsers = (req, res) => {
+    console.log('get all users');
+    UserModel.find().then(success => {
+        res.json({success: 'login successfull', user: success})
+    }, error => {
+        console.log('some errors when checking if getAllUsers method')
+        res.status(500).json({message: 'some internal error occured while trying to get users', errors: error})
+    })
+
+}
+
+module.exports.deleteUser = (req, res) => {
+    console.log('delete user method');
+    let userId = req.params.userId
+    UserModel.findByIdAndRemove(userId).then(deletedUser => {
+        res.json({success: 'delete successfull', user: deletedUser})
+    }, error => {
+        console.log('some errors when checking if deleting User  with id ' + userId)
+        res.status(500).json({message: 'some internal error occured while trying to delete User', errors: error})
+    })
+
+}
+
+module.exports.updateUser = (req, res) => {
+    console.log('updateUSer user method');
+    let userId = req.params.userId
+    // let data = req.body;
+    UserModel.findByIdAndUpdate( userId, {$set:req.body},{new:true}).then(updatedUser => {
+        res.json({success: 'update User successfull', user: updatedUser})
+    }, error => {
+        console.log('some errors when checking if updating User  with id ' + userId)
+        res.status(500).json({message: 'some internal error occured while trying to update User', errors: error})
+    })
+
+}
+
+module.exports.getUser = (req, res) => {
+    console.log('getUser method');
+    let userId = req.params.userId
+    UserModel.findById(userId).then(user => {
+        res.json(user)
+    }, error => {
+        console.log('some errors getting User  with id ' + userId)
+        res.status(500).json({message: 'some internal error occured while trying to get User', errors: error})
+    })
+
+}
