@@ -7,7 +7,7 @@ require('dotenv').config()
 require(__dirname + '/utils/database.connection.service').connect();
 // require('./utils/data.util.batchjobs').organizeRequestDataGraph()
 
-app.use(bodyParser.json())
+app.use(bodyParser.json({limit: '50mb'}))
 
 //CORS middleware
 var corsMiddleware = function(req, res, next) {
