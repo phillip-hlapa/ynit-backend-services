@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const UserModel = require('../../models/ynit-my-task-tracker-master-models/UserModel');
+const ProfilePicModel = require('../../models/ynit-my-task-tracker-master-models/profilepicture');
 const constants = require('../../utils/constants')
 const tokenSecret = require('../../utils/token.util')
 const TokenModel = require('../../models/ynit-my-task-tracker-master-models/token')
@@ -103,6 +104,28 @@ module.exports.deleteUser = (req, res) => {
 
 }
 
+
+module.exports.saveProfilePic = (req, res) => {
+    let userID = req.params.userId
+    let pp = new ProfilePicModel({
+        userId: req.body.userId,
+        name: req.body.name,
+        data: req.body.data
+    })
+
+    ProfilePicModel.findOneAndDelete({userId: req.body.userId}).then(success =>{
+        ProfilePicModel.create(pp).then(success => {
+            res.json({message: 'saved profile pic successfully'})
+        }, error => {
+            console.log(error)
+        })
+    }, error => {
+        console.log(error)
+    })
+
+
+}
+
 module.exports.updateUser = (req, res) => {
     console.log('updateUSer user method');
     let userId = req.params.userId
@@ -119,11 +142,23 @@ module.exports.updateUser = (req, res) => {
 module.exports.getUser = (req, res) => {
     console.log('getUser method');
     let userId = req.params.userId
+    console.log(userId)
     UserModel.findById(userId).then(user => {
+        console.log(user)
         res.json(user)
     }, error => {
         console.log('some errors getting User  with id ' + userId)
         res.status(500).json({message: 'some internal error occured while trying to get User', errors: error})
     })
 
+}
+
+module.exports.getUserProfilePic = (req, res) => {
+    console.log('getUserProfilePic method');
+    ProfilePicModel.findOne({userId: req.params.userId}).then(user => {
+        res.json(user)
+    }, error => {
+        console.log('some errors getting User profile picture with id ' + userId)
+        res.status(500).json({message: 'some errors getting User profile picture with id', errors: error})
+    })
 }

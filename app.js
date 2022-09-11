@@ -5,6 +5,7 @@ let app = express();
 let PORT = 1995 | process.env.PORT
 require('dotenv').config()
 require(__dirname + '/utils/database.connection.service').connect();
+// require('./utils/data.util.batchjobs').organizeRequestDataGraph()
 
 app.use(bodyParser.json())
 

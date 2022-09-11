@@ -6,6 +6,7 @@ const  RequestData = mongoose.Schema({
     path: { type: String, require: true },
     description: { type: String, require: true },
     date: { type: Date, require: true },
+    id: { type: Number, require: true}
 })
 
 module.exports = mongoose.model('RequestData', RequestData);
