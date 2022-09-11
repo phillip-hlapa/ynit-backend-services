@@ -8,6 +8,8 @@ app.get('/api/test', (req, res) => {
 })
 
 app.get('/', (req, res) => {
+    console.log(Date().toLocaleString('en-US', { timeZone: 'Africa/Johannesburg' }))
+    console.log(Date())
     res.send("<H2>Welcome to YNIT Master Backend Service! @ <i>" + new Date() + "</i></H2>")
 })
 app.use('/ynitapi', GLOBAL_ROUTER)

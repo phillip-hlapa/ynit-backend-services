@@ -1,10 +1,11 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const DateUtil = require('../../utils/data.util')
 
 const  RequestData = mongoose.Schema({
     path: { type: String, require: true },
     description: { type: String, require: true },
-    date: { type: String, require: false, default: Date.now },
+    date: { type: Date, require: false, default: DateUtil.getDate() },
 })
 
 module.exports = mongoose.model('RequestData', RequestData);
